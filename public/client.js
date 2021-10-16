@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded",function (){
         console.log(newlat,newlng)
         var CatLatLng = new google.maps.LatLng(newlat, newlng);
         console.log(CatLatLng)
+
+        let current_num = document.getElementById("datas").firstElementChild.firstElementChild.children[1].innerHTML
+        console.log(current_num)
+
         var Options = {
          zoom: 15,      //地図の縮尺値
          center: CatLatLng,   //地図の中心座標
@@ -30,15 +34,14 @@ document.addEventListener("DOMContentLoaded",function (){
             title:"cat",
             animation:google.maps.Animation.BOUNCE,
             icon:{
-                url:"images/pin_4.svg",
+                url:"images/pin_5.svg",
                 scaledSize: new google.maps.Size(60,60),
             },
-            // label: {
-            // text: "cat" ,
-            // color: "blueviolet" ,
-            // fontSize: "20px" ,
-            // fontWeight: "bold"
-            // 
+            label: {
+            text: "　　　　" + String(parseInt(current_num) + 1),
+            color: "#2f4f4f" ,
+            fontSize: "16px"
+            }
         })
 
         map.setCenter(CatLatLng)
@@ -51,8 +54,6 @@ document.addEventListener("DOMContentLoaded",function (){
         // let current_num = document.getElementById("dataid-0").innerHTML
         // console.log(parseInt(current_num) + 1)
 
-        let current_num = document.getElementById("datas").firstElementChild.firstElementChild.children[1].innerHTML
-        console.log(current_num)
 
         let current_minID_lettter = document.getElementById("datas").firstElementChild.firstElementChild.children[1].id.split('_')
         let current_minID_num = parseInt(current_minID_lettter[1])
@@ -81,16 +82,20 @@ document.addEventListener("DOMContentLoaded",function (){
         newID.innerHTML = String(parseInt(current_num) + 1)
         
         let newTime = document.createElement('p')
+        newTime.classList.add('mb-0')
         newTime.innerHTML = getdata.queuemessage.timestamp
 
         let newDeviceID = document.createElement('p')
+        newDeviceID.classList.add('mb-0','letter-small')
         newDeviceID.innerHTML = getdata.queuemessage.deviceid
 
         let newLatitude = document.createElement('p')
+        newLatitude.classList.add('mb-0','letter-small')
         newLatitude.id = 'latitude_' + String(current_minID_num - 1)
         newLatitude.innerHTML = getdata.queuemessage.latitude
 
         let newLongitude = document.createElement('p')
+        newLongitude.classList.add('mb-0','letter-small')
         newLongitude.id = 'longitude_' + String(current_minID_num - 1)
         newLongitude.innerHTML = getdata.queuemessage.longitude
 
@@ -159,11 +164,12 @@ function handleChange(){
     console.log("clicked")
     let posdataarr = document.getElementById('datas')
     let datanum= posdataarr.childElementCount
+    lineAnkers = []
     deleteMakers()
     for(let i=0;i<datanum;i++){
         let dataelement = document.getElementById('datas').children[i].firstElementChild.firstElementChild.id.split("_")
         let dataindex = dataelement[1]
-        console.log(dataindex)
+        let dbindex = document.getElementById('datas').children[i].firstElementChild.children[1].innerHTML
         let ckbxID = 'flexCheck_' + String(dataindex);
         ckbx = document.getElementById(ckbxID)
         if(ckbx.checked){
@@ -175,13 +181,10 @@ function handleChange(){
             checked_latitude = checked_latitude.substr(0,checked_latitude.length-1);
             checked_longitude = checked_longitude.substr(0,checked_longitude.length-1);
             console.log(checked_latitude,checked_longitude)
-            lineAnkers.push({
-                lat:checked_latitude,
-                lng:checked_longitude
-            })
             console.log("ankers",lineAnkers)
 
             var CheckedLatLng = new google.maps.LatLng(checked_latitude, checked_longitude);
+            // lineAnkers.push(CheckedLatLng)
 
             var marker = new google.maps.Marker({
                 position:CheckedLatLng,
@@ -189,15 +192,14 @@ function handleChange(){
                 title:"cat",
                 // animation:google.maps.Animation.BOUNCE,
                 icon:{
-                    url:"images/pin_4.svg",
+                    url:"images/pin_5.svg",
                     scaledSize: new google.maps.Size(60,60),
                 },
-                // label: {
-                // text: "cat" ,
-                // color: "blueviolet" ,
-                // fontSize: "20px" ,
-                // fontWeight: "bold"
-                // }
+                label: {
+                    text: "　　　　" + dbindex,
+                    color: "#2f4f4f" ,
+                    fontSize: "16px"
+                    }
                 
             })
 
@@ -211,14 +213,15 @@ function handleChange(){
         }
     }
 
-    var flightPath = new google.maps.Polyline({
-        path: lineAnkers,
-        map:map,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-      });
+    // var flightPath = new google.maps.Polyline({
+    //     path: lineAnkers,
+    //     map:map,
+    //     geodesic: true,
+    //     strokeColor: '#d2b48c',
+    //     strokeOpacity: 1.0,
+    //     strokeWeight: 2
+    //   });
+
 
 }
 
@@ -238,6 +241,7 @@ function deleteMakers(idx=null) {
         }
     }
 }
+
 
 
 historybutton.addEventListener('click',() => {

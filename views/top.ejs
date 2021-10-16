@@ -8,131 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Document</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script src=""></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyCyUMODplKkIcXse220vLZqtNVKOfXLJQ8&language=ja"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="client.js"></script>
-    <script>
-        // var socket = io();
-        // var map;
-
-        // socket.on('newjoined',(results) => {
-        //     console.log('results is '+results);
     
-        // })
-
-        // socket.on('newposdata',(newdata) => {
-        //     console.log(newdata)
-        //     getdata = JSON.parse(newdata)
-        //     let newlat = getdata.queuemessage.latitude.substr(0,getdata.queuemessage.latitude.length-1)
-        //     let newlng = getdata.queuemessage.longitude.substr(0,getdata.queuemessage.longitude.length-1)
-        //     console.log(newlat,newlng)
-        //     var CatLatLng = new google.maps.LatLng(newlat, newlng);
-        //     console.log(CatLatLng)
-        //     var Options = {
-        //      zoom: 15,      //地図の縮尺値
-        //      center: CatLatLng,   //地図の中心座標
-        //      mapTypeId: 'roadmap'   //地図の種類
-        //     };
-
-        //     var marker = new google.maps.Marker({
-        //         position:CatLatLng,
-        //         map:map,
-        //         title:"cat",
-        //         animation:google.maps.Animation.BOUNCE,
-        //         icon:{
-        //             url:"images/pin_4.svg",
-        //             scaledSize: new google.maps.Size(60,60),
-        //         },
-        //         // label: {
-        //         // text: "cat" ,
-        //         // color: "blueviolet" ,
-        //         // fontSize: "20px" ,
-        //         // fontWeight: "bold"
-        //         // 
-        //     })
-
-        //     markers.append(marker)
-
-
-        //     setTimeout(function(){ marker.setAnimation(null); }, 2500)
-
-        //     let current_num = document.getElementById("dataid-0").innerHTML
-        //     console.log(parseInt(current_num) + 1)
-
-        //     let parent = document.getElementById("datas")
-
-        //     let  newDataBox = document.createElement('div')
-        //     newDataBox.classList.add('card', 'mb-1', 'mt-1')
-
-        //     let innerNewBox = document.createElement('div')
-        //     innerNewBox.classList.add('card-body')
-
-        //     let newCKBX = document.createElement("input")
-        //     newCKBX.classList.add("me-1")
-        //     newCKBX.type = 'checkbox'
-        //     newCKBX.id = 'flexCheck-' + String(parseInt(current_num) + 1)
-        //     newCKBX.classList.add('form-check-input')
-
-        //     let newID = document.createElement('label')
-        //     newID.classList.add('form-check-label')
-        //     newID.for = 'flexCheck-' + String(parseInt(current_num) + 1)
-        //     newID.id = 'dataid-' +  String(parseInt(current_num) + 1)
-        //     newID.innerHTML = ' ' + String(parseInt(current_num) + 1)
-            
-        //     let newTime = document.createElement('p')
-        //     newTime.innerHTML = getdata.queuemessage.timestamp
-
-        //     let newDeviceID = document.createElement('p')
-        //     newDeviceID.innerHTML = getdata.queuemessage.deviceid
-
-        //     let newLatitude = document.createElement('p')
-        //     newLatitude.innerHTML = getdata.queuemessage.latitude
-
-        //     let newLongitude = document.createElement('p')
-        //     newLongitude.innerHTML = getdata.queuemessage.longitude
-
-        //     innerNewBox.appendChild(newCKBX)
-        //     innerNewBox.appendChild(newID)
-        //     innerNewBox.appendChild(newTime)
-        //     innerNewBox.appendChild(newDeviceID)
-        //     innerNewBox.appendChild(newLatitude)
-        //     innerNewBox.appendChild(newLongitude)
-
-        //     newDataBox.appendChild(innerNewBox)
-
-        //     parent.insertBefore(newDataBox,parent.firstChild)
-
-            
-
-        // })
-
-        
-        // function success(pos){
-        //     const lat = pos.coords.latitude;
-        //     const lng = pos.coords.longitude;
-        //     const accuracy = pos.coords.accuracy;
-        
-        //     $('#loc').text(`緯度：${lat} 経度：${lng}`);
-        //     $('#accuracy').text(accuracy);
-
-        //     var MyLatLng = new google.maps.LatLng(lat, lng);
-        //     console.log(MyLatLng)
-        //     var Options = {
-        //      zoom: 15,      //地図の縮尺値
-        //      center: MyLatLng,    //地図の中心座標
-        //      mapTypeId: 'roadmap'   //地図の種類
-        //     };
-        //     map = new google.maps.Map(document.getElementById('map'), Options);
-        
-        // }
-      
-        // function fail(pos){
-        //     alert('位置情報の取得に失敗しました。エラーコード：');
-        // }
-
-        // navigator.geolocation.getCurrentPosition(success,fail);
-
-
+    <script>
+       
 
     </script>
 
@@ -140,13 +21,12 @@
         html { height: 100% }
         body { height: 100% }
         #map { height: 600px; width: 100%}
+        .letter-small{font-size: 0.5rem;}
         </style>
+
     </head>
 <body>
 
-    <!-- <p>あなたはいま</p>
-    <p id="loc" class="position"></p>
-    <p>の場所にいます。ちなみに精度は半径 <span id="accuracy" class="position"></span> mです。</p> -->
 
     <div class="container-fluid">
         <div class="row pt-2">
