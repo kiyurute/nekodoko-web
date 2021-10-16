@@ -244,9 +244,9 @@ function deleteMakers(idx=null) {
 
 
 
-historybutton.addEventListener('click',() => {
-    console.log("btn pressed!")
-})
+// historybutton.addEventListener('click',() => {
+//     console.log("btn pressed!")
+// })
 
 
 })

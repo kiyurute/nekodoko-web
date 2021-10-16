@@ -75,6 +75,10 @@ app.get('/',(req,res)=>{
                 if(a.id > b.id) return -1;
                 if(b.id > a.id) return 1;
               })
+              items.map((item) => {
+                // item.timestamp.subStr(0,item.timestamp.length - 40)
+                item.timestamp = String(item.timestamp).substr(0,item.timestamp.length - 37)
+              })
               console.log(items)
               res.render('top.ejs',{posdata:items})
             }
