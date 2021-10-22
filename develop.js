@@ -26,6 +26,7 @@ app.use(express.static('public'));
 app.get('/',(req,res)=>{
 
   console.log("query------------------------------------------------------------",req.query)
+  // deviceidSelect = req.body.deviceidSelect
 
   let seqnum;
   const seqParams = {
@@ -48,13 +49,15 @@ app.get('/',(req,res)=>{
 
       for (let i = seqnum - 4; i <= seqnum; i++){
 
-        const nekodokoParams = {
-          TableName:'nekodoko',
-          KeyConditionExpression: 'id = :id',
-          ExpressionAttributeValues: {
-            ':id':i
+          const nekodokoParams = {
+            TableName:'nekodoko',
+            KeyConditionExpression: 'id = :id',
+            ExpressionAttributeValues: {
+              ':id':i
+            }
           }
-        }
+
+        
   
           documentClient.query(nekodokoParams, (err, data) => {
             if (err) {
@@ -89,11 +92,78 @@ app.get('/',(req,res)=>{
       
     }  
   })
-
-
-    
   
 })
+
+
+
+app.get('/search',(req,res)=>{
+
+  console.log("query------------------------------------------------------------",req.query)
+  deviceidSelect = req.query.deviceidSelect
+  datanumSelect = parseInt(req.query.datanumSelect)
+  console.log(deviceidSelect,datanumSelect)
+
+  let seqnum;
+  const seqParams = {
+    TableName: 'sequence',
+    KeyConditionExpression: 'tablename = :tablename',
+    ExpressionAttributeValues: {
+      ':tablename': 'nekodoko'
+    }
+  }
+
+  documentClient.query(seqParams, (err, data) => {
+    if (err) {
+      console.log(JSON.stringify(err, null, 2))
+    }else{
+      console.log("got seq!")
+      let seqdata = JSON.parse(JSON.stringify(data, null, 2))
+      seqnum = seqdata.Items[0].current_number
+      console.log("in callback",seqnum)
+      let posDatas = []
+
+
+
+          const nekodokoParams = {
+            TableName:'nekodoko',
+            FilterExpression: 'deviceid = :deviceid',
+            ExpressionAttributeValues: {
+              ':deviceid':deviceidSelect
+            }
+          }
+
+  
+          documentClient.scan(nekodokoParams, (err, data) => {
+            if (err) {
+              console.log(JSON.stringify(err, null, 2))
+            }else{
+              let posdata = JSON.parse(JSON.stringify(data, null, 2))
+              console.log(posdata.Items)
+
+              posdata.Items.sort((a,b) => {
+                if(a.id > b.id) return -1;
+                if(b.id > a.id) return 1;
+              })
+
+              let selected_num_data = posdata.Items.slice(0,datanumSelect)
+
+              console.log(selected_num_data)
+              
+              res.render('top.ejs',{posdata:selected_num_data})
+
+            }  
+
+            
+          })
+      
+      
+      
+    }  
+  })
+  
+})
+
 
 
 

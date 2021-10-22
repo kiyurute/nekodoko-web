@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded",function (){
         
         let newTime = document.createElement('p')
         newTime.classList.add('mb-0')
-        newTime.innerHTML = getdata.queuemessage.timestamp
+        newTime.innerHTML = getdata.queuemessage.timestamp.substr(0,getdata.queuemessage.timestamp.length - 5)
 
         let newDeviceID = document.createElement('p')
         newDeviceID.classList.add('mb-0','letter-small')
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded",function (){
         var MyLatLng = new google.maps.LatLng(lat, lng);
         console.log(MyLatLng)
         var Options = {
-         zoom: 15,      //地図の縮尺値
+         zoom: 16,      //地図の縮尺値
          center: MyLatLng,    //地図の中心座標
          mapTypeId: 'roadmap'   //地図の種類
         };
@@ -246,6 +246,14 @@ function deleteMakers(idx=null) {
 
 // historybutton.addEventListener('click',() => {
 //     console.log("btn pressed!")
+// })
+
+// let submitbutton = document.getElementById('submit-button')
+// submitbutton.addEventListener('click',() => {
+//     let deviceSelect = document.getElementById('device-select').value
+//     let datanumSelect = document.getElementById('datanum-select').value
+//     console.log(deviceSelect,datanumSelect)
+    
 // })
 
 

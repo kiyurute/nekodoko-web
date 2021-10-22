@@ -33,41 +33,77 @@
             <a class="navbar-brand" href="#">
                 <img src="images/nekodoko_logo.svg" alt="" width="110" height="32" class="d-inline-block align-top">
               </a>
-          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button> -->
-          <!-- <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
-            </ul>
-          </div> -->
+
+
+              <form action="/search" method="get" class="pe-3">
+                <div class="row">
+                    
+                    <div class="col-5">
+                    <select class="form-select" aria-label="Default select example" id="device-select" name="deviceidSelect">
+                        <option selected>select device ID</option>
+                        <option value="76E2C2">76E2C2</option>
+                        <option value="76E0CD">76E0CD</option>
+                      </select>
+                    </div>
+                    <div class="col-5">
+                        <select class="form-select" aria-label="Default select example" id="datanum-select" name="datanumSelect">
+                            <option selected>Open this select menu</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                          </select>
+                        </div>
+                    <div class="col-2">
+                        <button class="btn btn-primary" id="submit-button" type="submit">submit</button>   
+                    </div>
+                </div> 
+            </form>
+
+
         </div>
       </nav>
 
     <div class="container-fluid">
 
-        <div class="row pt-2">
-            <div class="col-md-8">
+        <!-- <form action="/search" method="get">
+            <div class="row pt-4 pb-4">
+                
+                <div class="col-5">
+                <select class="form-select" aria-label="Default select example" id="device-select" name="deviceidSelect">
+                    <option selected>select device ID</option>
+                    <option value="76E2C2">76E2C2</option>
+                    <option value="76E0CD">76E0CD</option>
+                  </select>
+                </div>
+                <div class="col-5">
+                    <select class="form-select" aria-label="Default select example" id="datanum-select" name="datanumSelect">
+                        <option selected>Open this select menu</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                      </select>
+                    </div>
+                <div class="col-2">
+                    <div class="position-relative">
+                    <button class="btn btn-primary position-absolute top-0 end-0" id="submit-button" type="submit">submit</button>
+                    </div>
+                </div>
+            </div> 
+        </form> -->
+
+        <div class="row">
+ 
+           
+            <div class="col-md-9 pt-2">
                 <div id="map"></div>
             </div>
-            <div class="col-md-4 overflow-auto">
+            <div class="col-md-3 pt-2 overflow-auto" style="height: 600px;">
                 <!-- <button id="history-btn" class="btn btn-primary">履歴取得</button> -->
 
                 <div id="datas">
-                    <% for (let i = 0; i < 5; i++){%>
+                    <% for (let i = 0; i < posdata.length; i++){%>
                     <div class="card mb-1 mt-1">
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 0.5rem;">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheck_<%=i%>">
                             <label class="form-check-label" for="flexCheck_<%=i%>" id="dataid_<%=i%>">
                                 <%= posdata[i].id %>
@@ -81,7 +117,10 @@
                     <% } %>
                 </div>
 
+            </div>
+
         </div>
+           
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
