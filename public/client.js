@@ -118,10 +118,10 @@ document.addEventListener("DOMContentLoaded",function (){
     function success(pos){
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
-        const accuracy = pos.coords.accuracy;
+        //const accuracy = pos.coords.accuracy;
     
-        $('#loc').text(`緯度：${lat} 経度：${lng}`);
-        $('#accuracy').text(accuracy);
+        // $('#loc').text(`緯度：${lat} 経度：${lng}`);
+        // $('#accuracy').text(accuracy);
 
         var MyLatLng = new google.maps.LatLng(lat, lng);
         console.log(MyLatLng)
@@ -136,6 +136,18 @@ document.addEventListener("DOMContentLoaded",function (){
   
     function fail(pos){
         alert('位置情報の取得に失敗しました。エラーコード：');
+        const lat = 35.6955495;
+        const lng = 139.7348293;
+
+        var MyLatLng = new google.maps.LatLng(lat, lng);
+        console.log(MyLatLng)
+        var Options = {
+         zoom: 16,      //地図の縮尺値
+         center: MyLatLng,    //地図の中心座標
+         mapTypeId: 'roadmap'   //地図の種類
+        };
+        map = new google.maps.Map(document.getElementById('map'), Options);
+
     }
 
     navigator.geolocation.getCurrentPosition(success,fail);
